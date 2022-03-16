@@ -7,6 +7,7 @@ import LoginScreen from '../screens/loginScreen/loginScreen';
 import OtpScreen from '../screens/otpScreen/otpScreen';
 import Home from '../screens/homeScreen/homes';
 import Location from '../screens/Location/location';
+import ProfileData from '../screens/profileScreen/ProfileData';
 
 const homeStack = createNativeStackNavigator()
 const Navigation = () => {
@@ -17,6 +18,7 @@ const Navigation = () => {
         <homeStack.Screen name='LoginScreen' component={LoginScreen} options={{headerShown:false}} />
         <homeStack.Screen name='OtpScreen' component={OtpScreen} options={{headerShown:false}} />
         <homeStack.Screen name='Location' component={Location} options={{headerShown:false}} />
+        <homeStack.Screen name='ProfileData' component={ProfileData} options={{headerShown:false}} />
         <homeStack.Screen name='HomeScreen' component={Home} options={{headerShown:false}} />
     </homeStack.Navigator>
    </NavigationContainer>

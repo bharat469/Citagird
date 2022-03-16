@@ -11,3 +11,8 @@ export {default as GoogleLogo} from '../assets/login/google.svg'
 //location Screen
 export {default as Locations} from '../assets/location/location.svg'
 
+//Profile Screen
+export {default as Profile} from '../assets/profile/profile.svg'
+
+// homeScreen
+export {default as SideBar} from '../assets/home/sideDrawer.svg'

@@ -13,7 +13,7 @@ target 'Citagird' do
   )
 
   pod 'react-native-location', :path => '../node_modules/react-native-location'
-
+  pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec'
   target 'CitagirdTests' do
     inherit! :complete
     # Pods for testing
