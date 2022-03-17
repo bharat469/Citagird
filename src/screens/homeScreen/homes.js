@@ -38,11 +38,20 @@ const styles = StyleSheet.create({
   searchContainer:{
     top:hp('6%'),
     alignItems:'center',
-    backgroundColor:'#DOE3FF',
+    backgroundColor:'#D0E3FF',
     padding:12,
     width:wp('90%'),
     left:wp('5%'),
-    borderRadius:12
+    borderRadius:12,
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
   },
 headText:{
   fontSize:hp('3%'),

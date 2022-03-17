@@ -13,7 +13,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.github.reactnativecommunity.location.RNLocationPackage;
-
+import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -33,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
           // packages.add(new MyReactNativePackage());
           new RNLocationPackage();
            new VectorIconsPackage();
+           new RNDateTimePickerPackage();
           return packages;
         }
 

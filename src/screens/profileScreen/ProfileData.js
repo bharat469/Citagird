@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
 import {Avatar} from 'react-native-elements';
@@ -26,7 +26,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import RadioBtn from '../../helpers/props/radioBtn/RadioBtn';
 import Button from '../../helpers/props/button';
 import moment from 'moment';
-import { Link } from '../../data/Links';
+import {Link} from '../../data/Links';
 
 const ProfileData = ({navigation, route}) => {
   const [image, setImage] = useState('');
@@ -80,77 +80,87 @@ const ProfileData = ({navigation, route}) => {
   };
 
   const handleConfirm = date => {
-   
     hideDatePicker();
     setDate(moment(date).format('Do MMMM YYYY'));
   };
 
   const {location} = route.params;
 
-  const gender = [{id: 0, key: 'Male', label: 'Male'},{id:1,key:'female',label:'female'}];
+  const gender = [
+    {id: 0, key: 'Male', label: 'Male'},
+    {id: 1, key: 'female', label: 'female'},
+  ];
 
   return (
-    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-
-    <View style={styles.profileContainer}>
-      <View style={styles.profileTop}>
-        <Text style={styles.profileHead}>Complete your profile</Text>
-        <View>
-          <Avatar
-            size={164}
-            rounded
-            containerStyle={{backgroundColor: Primary}}
-            source={{
-              uri:image?image:Link
-            }}></Avatar>
-          <TouchableOpacity style={styles.headerCamera} onPress={open}>
-            <Entypo name="camera" size={24} />
-          </TouchableOpacity>
-        </View>
-        <ScrollView>
-          <Input label="First Name" Placeholder="Eg Michael" />
-          <Input label="Last Name" Placeholder="Eg Jordon" />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.profileContainer}>
+        <View style={styles.profileTop}>
+          <Text style={styles.profileHead}>Complete your profile</Text>
           <View>
-            <Text style={styles.label}>DOB</Text>
-            <TouchableOpacity
-              style={styles.textInputStyle}
-              onPress={showDatePicker}>
-              <Text style={styles.DateText}>{date ? date : '04/04/1991'}</Text>
-              <FontAwesome name="calendar" size={24} color={Primary} />
+            <Avatar
+              size={164}
+              rounded
+              containerStyle={{backgroundColor: Primary}}
+              source={{
+                uri: image ? image : Link,
+              }}></Avatar>
+            <TouchableOpacity style={styles.headerCamera} onPress={open}>
+              <Entypo name="camera" size={24} />
             </TouchableOpacity>
-            <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-            />
           </View>
-          <View style={{top:hp('4%'),alignItems:'center'}}>
-          <RadioBtn RadioArray={gender} default={'Male'} />
+          <ScrollView style={{bottom:hp('2%')}}>
+            <Input label="First Name" Placeholder="Eg Michael" />
+            <Input label="Last Name" Placeholder="Eg Jordon" />
+            <View>
+              <Text style={styles.label}>DOB</Text>
+              <TouchableOpacity
+                style={styles.textInputStyle}
+                onPress={showDatePicker}>
+                <Text style={styles.DateText}>
+                  {date ? date : '04/04/1991'}
+                </Text>
+                <FontAwesome name="calendar" size={24} color={Primary} />
+              </TouchableOpacity>
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
             </View>
-        </ScrollView>
-        <Button buttonText="Save" buttonSize={{width:wp('80%')}} onPress={()=>navigation.navigate('HomeScreen',{
-          location,
-          image
-        })} />
+            <View style={{top: hp('4%'), alignItems: 'center'}}>
+              <RadioBtn RadioArray={gender} default={'Male'} />
+            </View>
+           
+          </ScrollView>
+          <Button
+            buttonText="Save"
+            buttonSize={{width: wp('80%')}}
+            onPress={() =>
+              navigation.navigate('HomeScreen', {
+                location,
+                image,
+              })
+            }
+          />
+        </View>
+        <ReactNativeModal
+          isVisible={visible}
+          onBackdropPress={close}
+          onBackButtonPress={close}
+          style={{justifyContent: 'flex-end', margin: 0}}>
+          <SafeAreaView style={styles.options}>
+            <Pressable style={styles.Picker} onPress={openCamera}>
+              <Entypo name="camera" size={34} />
+              <Text style={styles.textPicker}>Camera</Text>
+            </Pressable>
+            <Pressable style={styles.Picker} onPress={chooseImage}>
+              <Entypo name="folder-images" size={34} />
+              <Text style={styles.textPicker}>Library</Text>
+            </Pressable>
+          </SafeAreaView>
+        </ReactNativeModal>
       </View>
-      <ReactNativeModal
-        isVisible={visible}
-        onBackdropPress={close}
-        onBackButtonPress={close}
-        style={{justifyContent: 'flex-end', margin: 0}}>
-        <SafeAreaView style={styles.options}>
-          <Pressable style={styles.Picker} onPress={openCamera}>
-            <Entypo name="camera" size={34} />
-            <Text style={styles.textPicker}>Camera</Text>
-          </Pressable>
-          <Pressable style={styles.Picker} onPress={chooseImage}>
-            <Entypo name="folder-images" size={34} />
-            <Text style={styles.textPicker}>Library</Text>
-          </Pressable>
-        </SafeAreaView>
-      </ReactNativeModal>
-    </View>
     </TouchableWithoutFeedback>
   );
 };
